@@ -28,8 +28,44 @@
 
 """
 
+def printSubdiagrams(gaussCode):
+	"""
+		Prints all the subdiagrams of a given diagram given a valid Gauss code.
+		Raises and error if the Gauss code is not valid.
+	"""
+	if (not isValidGaussCode(gaussCode)) :
+		raise ValueError('Gauss code was invalid')
+	else :
+		# TODO: Calculate subdiagram codes
+		# TODO; Print/return subdiagram codes
+
+
+def isValidGaussCode(gaussCode):
+	"""
+		Returns True if input is a valid Gauss code.
+	"""
+	# TODO: Make sure gaussCode is (array of) array(s) of numbers
+	# TODO: Make sure each array of numbers sums to 0
+	# TODO: Make sure each crossing occurs exactly twice (under/over, saddle)
+	# TODO: For invalid gaussCode, print the gaussCode
+	return False
+
 
 def main():
-      print "This may eventually ask that the user provide a valid Gauss code."
+	"""
+		Asks user to input a Gauss code.
+		Prints the subdiagrams of the knotted surface.
+	"""
+	# TODO: Get user input either as a Gauss code or path to file with Gauss
+	#       codes.
+	# TODO: Parse input
+
+    gaussCode = [[1,2,3]]
+    print gaussCode
+
+    # TODO: Handle Error for invalid Gauss code
+    # TODO: Ask user for new input while input is invalid
+    printSubdiagrams(gaussCode)
+
 if __name__ == '__main__':
     main()
