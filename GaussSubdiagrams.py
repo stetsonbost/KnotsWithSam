@@ -26,41 +26,62 @@
     corresponds to the tuple
             [[-1.5,2.5,-4,3,-2.5,1.5,-3,4]].
 
+    IDEA: Use complex numbers for saddles
+
 """
 
 def printSubdiagrams(gaussCode):
-	"""
-		Prints all the subdiagrams of a given diagram given a valid Gauss code.
-		Raises and error if the Gauss code is not valid.
-	"""
-	if (not isValidGaussCode(gaussCode)) :
-		raise ValueError('Gauss code was invalid')
-	else :
-		# TODO: Calculate subdiagram codes
-		# TODO; Print/return subdiagram codes
+    """
+        Prints all the subdiagrams of a given diagram given a valid Gauss code.
+        Raises and error if the Gauss code is not valid.
+    """
+
+    # This will throw and error if gaussCode is not valid
+    isValidGaussCode(gaussCode)
+    print "Valid Gauss Code!"
+    # TODO: Calculate subdiagram codes
+    # TODO: Print/return subdiagram codes
 
 
 def isValidGaussCode(gaussCode):
-	"""
-		Returns True if input is a valid Gauss code.
-	"""
-	# TODO: Make sure gaussCode is (array of) array(s) of numbers
-	# TODO: Make sure each array of numbers sums to 0
-	# TODO: Make sure each crossing occurs exactly twice (under/over, saddle)
-	# TODO: For invalid gaussCode, print the gaussCode
-	return False
+    """
+        Throw an error if input is an invalid Gauss code.
+    """
+    # TODO: For invalid gaussCode, print the gaussCode(?) and the error
+    if (type(gaussCode) is not list         # Make sure gaussCode is a list
+        or not(len(gaussCode) > 0)         # Make sure gaussCode is nonempty
+        or type(gaussCode[0]) is not list   # Make sure the first element of 
+                                            #   gaussCode is a list
+        ):
+        raise ValueError('Gauss code is invalid')
+
+    # Make sure each array of numbers sums to 0
+    for code in gaussCode:
+        sum = 0
+        # Sum over all element of i
+        for i in code:
+            # Elements of code must be numbers
+            if type(i) is not (int or float):
+                raise ValueError('Gauss code is invalid')
+            sum += i
+        if sum != 0:
+            raise ValueError('Gauss code is invalid')
+
+    # TODO: Make sure each crossing occurs exactly twice (under/over, saddle)
+
+    # TODO: For invalid gaussCode, print the gaussCode
 
 
 def main():
-	"""
-		Asks user to input a Gauss code.
-		Prints the subdiagrams of the knotted surface.
-	"""
-	# TODO: Get user input either as a Gauss code or path to file with Gauss
-	#       codes.
-	# TODO: Parse input
+    """
+        Asks user to input a Gauss code.
+        Prints the subdiagrams of the knotted surface.
+    """
+    # TODO: Get user input either as a Gauss code or path to file with Gauss
+    #       codes.
+    # TODO: Parse input
 
-    gaussCode = [[1,2,3]]
+    gaussCode = [[1,2,3,-5]]
     print gaussCode
 
     # TODO: Handle Error for invalid Gauss code
