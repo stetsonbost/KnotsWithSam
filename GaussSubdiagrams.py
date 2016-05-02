@@ -1,7 +1,8 @@
 #!/usr/bin/python
 
 """
-    GaussSubdiagrams.py
+    Stetson Bost, author
+    Sam Nelson, advisor
 
     ===========================================================================
 
@@ -35,58 +36,90 @@ def printSubdiagrams(gaussCode):
         Prints all the subdiagrams of a given diagram given a valid Gauss code.
         Raises and error if the Gauss code is not valid.
     """
-
     # This will throw and error if gaussCode is not valid
     isValidGaussCode(gaussCode)
     print "Valid Gauss Code!"
     # TODO: Calculate subdiagram codes
-    # TODO: Print/return subdiagram codes
+    calculateSubdiagrams(gaussCode)
+    # TODO: Print subdiagram codes to a file
+    
+def calculateSubdiagrams(gaussCode):
+    """
+        Determines tuples corresponding to subdiagrams
+    """
+    
+
 
 
 def isValidGaussCode(gaussCode):
     """
         Throw an error if input is an invalid Gauss code.
     """
-    # TODO: For invalid gaussCode, print the gaussCode(?) and the error
     if (type(gaussCode) is not list         # Make sure gaussCode is a list
-        or not(len(gaussCode) > 0)         # Make sure gaussCode is nonempty
+        or not(len(gaussCode) > 0)          # Make sure gaussCode is nonempty
         or type(gaussCode[0]) is not list   # Make sure the first element of 
                                             #   gaussCode is a list
         ):
         raise ValueError('Gauss code is invalid')
 
     # Make sure each array of numbers sums to 0
+    # TODO: is this necessary for each Gauss code?
+    #       OR should the entire set of Gauss codes sum to 0?
     for code in gaussCode:
-        sum = 0
+        dictionary = {} # key is element of Gauss code, value is boolean
+        sumTotal = 0
         # Sum over all element of i
         for i in code:
             # Elements of code must be numbers
-            if type(i) is not (int or float):
-                raise ValueError('Gauss code is invalid')
-            sum += i
-        if sum != 0:
+            if type(i) is (not int and not float and not complex):
+                raise ValueError('Gauss code is invalid: ' + 
+                    'contains an element (' + str(i) + ') that is not a number')
+
+            # This section makes sure positive and negative elements of the 
+            #   Gauss code always come in pairs
+
+            # if abs(i) not in dictionary, add it to dictionary
+            if not dictionary.has_key(abs(i)):
+                dictionary[abs(i)] = i > 0
+            # if abs(i) in dictionary
+            else:
+                # if there is a corresponding pair of elements,
+                #   then delete the key
+                if (i > 0) != dictionary[abs(i)] :
+                    del dictionary[abs(i)]
+                # else, there were two identical elements in the gauss code.
+                #   which is not valid
+                else:
+                    raise ValueError('Gauss code is invalid: ' +
+                        '2 identical elements in Gauss code')
+
+            sumTotal += i
+        if dictionary != {}:
+            raise ValueError('Gauss code is invalid:' +
+                'not all elements have a corresponding element')
+        if sumTotal != 0:
             raise ValueError('Gauss code is invalid')
 
     # TODO: Make sure each crossing occurs exactly twice (under/over, saddle)
 
-    # TODO: For invalid gaussCode, print the gaussCode
-
+import sys
 
 def main():
     """
         Asks user to input a Gauss code.
         Prints the subdiagrams of the knotted surface.
     """
-    # TODO: Get user input either as a Gauss code or path to file with Gauss
-    #       codes.
-    # TODO: Parse input
-
-    gaussCode = [[1,2,3,-5]]
-    print gaussCode
+    # TODO: Get user input as a path to file with Gauss code(s)
+    # TODO: Read input file
+    for gaussCode in sys.argv[1:]:
+        print gaussCode, type(gaussCode)
+        # TODO: Turn gaussCode into a list of numbers
 
     # TODO: Handle Error for invalid Gauss code
     # TODO: Ask user for new input while input is invalid
-    printSubdiagrams(gaussCode)
+        printSubdiagrams(gaussCode)
+
+    # TODO: Print subdiagram codes to 
 
 if __name__ == '__main__':
     main()
