@@ -31,7 +31,8 @@
 
 """
 
-import sys                  # used in main
+import sys                  # used in main to read command line arguments
+import ast                  # used in main to convert string to list
 from copy import deepcopy   # used in calculateSubdiagrams
 
 def printSubdiagrams(gaussCode):
@@ -134,6 +135,7 @@ def isValidGaussCode(gaussCode):
 
 def main():
     """
+        Accepts command line argument for Gauss code list.
         Asks user to input a Gauss code.
         Prints the subdiagrams of the knotted surface.
     """
@@ -141,21 +143,23 @@ def main():
 
     # TODO: Get user input as a path to file with Gauss code(s)
     # TODO: Read input file
-    for gaussCode in sys.argv[1:]:
+    for gaussCodeString in sys.argv[1:]:
+        print gaussCodeString, type(gaussCodeString)
+        # Turn gaussCodeString into a list
+        gaussCode = ast.literal_eval(gaussCodeString)
         print gaussCode, type(gaussCode)
-        # TODO: Turn gaussCode into a list of (complex?) numbers
 
-
-    # TODO: Handle Error for invalid Gauss code
-    # TODO: Ask user for new input while input is invalid
+        # TODO: Handle Error for invalid Gauss code
+        # TODO: Ask user for new input while input is invalid
         printSubdiagrams(gaussCode)
-    printSubdiagrams([])
-    printSubdiagrams([1,-1])
-    printSubdiagrams([1,2.5,-2.5,-1])
-    printSubdiagrams([1,2.5,-1,-2.5])
-    printSubdiagrams([1,2.5,-3,3,-1,-2.5])
 
-    # TODO: Print subdiagram codes
+    # printSubdiagrams([])
+    # printSubdiagrams([1,-1])
+    # printSubdiagrams([1,2.5,-2.5,-1])
+    # printSubdiagrams([1,2.5,-1,-2.5])
+    # printSubdiagrams([1,2.5,-3,3,-1,-2.5])
+
+    # TODO: Write subdiagrams to file Subdiagrams.txt
 
 if __name__ == '__main__':
     main()
