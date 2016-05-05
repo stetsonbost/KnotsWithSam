@@ -31,22 +31,51 @@
 
 """
 
+import sys                  # used in main
+from copy import deepcopy   # used in calculateSubdiagrams
+
 def printSubdiagrams(gaussCode):
     """
         Prints all the subdiagrams of a given diagram given a valid Gauss code.
         Raises and error if the Gauss code is not valid.
     """
     # This will throw and error if gaussCode is not valid
-    isValidGaussCode(gaussCode)
+    # TODO: UNCOMMENT THE FOLLOWING AFTER FIXING isValidGaussCode
+    # isValidGaussCode(gaussCode)
     print "Valid Gauss Code!"
     # TODO: Calculate subdiagram codes
-    calculateSubdiagrams(gaussCode)
+    setSubdiagrams = calculateSubdiagrams(gaussCode)
+    print setSubdiagrams
+    # TODO: Order the Set
+    # TODO: Change Set into list?
     # TODO: Print subdiagram codes to a file
     
 def calculateSubdiagrams(gaussCode):
     """
-        Determines tuples corresponding to subdiagrams
+        Determines tuples corresponding to subdiagrams. Uses recursion.
+        Returns a Set of the subdiagrams as tuples.
+        gaussCode must be a list of (comlplex?) numbers
     """
+    # Create a set of subdiagrams
+    subdiagrams = set()
+    # Create set of subdiagrams containing only the gaussCode
+    gaussTuple = tuple(gaussCode)
+    subdiagrams.add(gaussTuple)
+
+    # TODO: Find way to go through list and not delete all elemets twice 
+    for item in gaussCode:
+        # Make a copy of the original gaussCode
+        copyCode = deepcopy(gaussCode)
+        # Remove a pair of corresponding elements in the code
+        copyCode.remove(item)
+        copyCode.remove(-item)
+        # Add new subdiagrams to set of all subdiagrams
+        subdiagram = calculateSubdiagrams(copyCode)
+        subdiagrams = subdiagrams | subdiagram
+
+    # print "after ", subdiagrams
+    return subdiagrams
+
     
 
 
@@ -55,6 +84,7 @@ def isValidGaussCode(gaussCode):
     """
         Throw an error if input is an invalid Gauss code.
     """
+    # TODO: FIX THIS TO WORK WITH NEW GAUSSCODE FORMAT
     if (type(gaussCode) is not list         # Make sure gaussCode is a list
         or not(len(gaussCode) > 0)          # Make sure gaussCode is nonempty
         or type(gaussCode[0]) is not list   # Make sure the first element of 
@@ -102,24 +132,30 @@ def isValidGaussCode(gaussCode):
 
     # TODO: Make sure each crossing occurs exactly twice (under/over, saddle)
 
-import sys
-
 def main():
     """
         Asks user to input a Gauss code.
         Prints the subdiagrams of the knotted surface.
     """
+    # TODO: Accept list of lists of Gauss codes
+
     # TODO: Get user input as a path to file with Gauss code(s)
     # TODO: Read input file
     for gaussCode in sys.argv[1:]:
         print gaussCode, type(gaussCode)
-        # TODO: Turn gaussCode into a list of numbers
+        # TODO: Turn gaussCode into a list of (complex?) numbers
+
 
     # TODO: Handle Error for invalid Gauss code
     # TODO: Ask user for new input while input is invalid
         printSubdiagrams(gaussCode)
+    printSubdiagrams([])
+    printSubdiagrams([1,-1])
+    printSubdiagrams([1,2.5,-2.5,-1])
+    printSubdiagrams([1,2.5,-1,-2.5])
+    printSubdiagrams([1,2.5,-3,3,-1,-2.5])
 
-    # TODO: Print subdiagram codes to 
+    # TODO: Print subdiagram codes
 
 if __name__ == '__main__':
     main()
