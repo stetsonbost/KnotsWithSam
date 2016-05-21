@@ -27,7 +27,7 @@
     corresponds to the tuple
             [[-1.5,2.5,-4,3,-2.5,1.5,-3,4]].
 
-    IDEA: Use complex numbers for saddles
+    IDEA: Use complex numbers for saddles?
 
 """
 
