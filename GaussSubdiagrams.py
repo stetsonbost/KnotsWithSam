@@ -143,21 +143,21 @@ def main():
 
     # TODO: Get user input as a path to file with Gauss code(s)
     # TODO: Read input file
-    for gaussCodeString in sys.argv[1:]:
-        print gaussCodeString, type(gaussCodeString)
-        # Turn gaussCodeString into a list
-        gaussCode = ast.literal_eval(gaussCodeString)
-        print gaussCode, type(gaussCode)
+    # for gaussCodeString in sys.argv[1:]:
+    #     print gaussCodeString, type(gaussCodeString)
+    #     # Turn gaussCodeString into a list
+    #     gaussCode = ast.literal_eval(gaussCodeString)
+    #     print gaussCode, type(gaussCode)
 
         # TODO: Handle Error for invalid Gauss code
         # TODO: Ask user for new input while input is invalid
-        printSubdiagrams(gaussCode)
+        # printSubdiagrams(gaussCode)
 
-    # printSubdiagrams([])
-    # printSubdiagrams([1,-1])
-    # printSubdiagrams([1,2.5,-2.5,-1])
-    # printSubdiagrams([1,2.5,-1,-2.5])
-    # printSubdiagrams([1,2.5,-3,3,-1,-2.5])
+    printSubdiagrams([])
+    printSubdiagrams([1,-1])
+    printSubdiagrams([1,2.5,-2.5,-1])
+    printSubdiagrams([1,2.5,-1,-2.5])
+    printSubdiagrams([1,2.5,-3,3,-1,-2.5])
 
     # TODO: Write subdiagrams to file Subdiagrams.txt
 

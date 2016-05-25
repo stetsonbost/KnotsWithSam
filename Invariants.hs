@@ -1,6 +1,6 @@
 #!/usr/bin/env runhaskell
 {- |
-Module      :  <File name or $Header$ to be replaced automatically>
+Module      :  Invariants.hs
 Description :  Produces finite type invariants of knotted surfaces
 Authors     :  Stetson Bost, Ben Garbuz
 Date        :  2016.05.20
@@ -20,7 +20,7 @@ For classical crossings,
 For saddles, (which don't have arrowheads)
   x1
 
-To compile, use Makefile (type "make" at command line) or type at command line
+To compile, use Makefile (type "make invariants" at command line) or type at command line
         ghc -o invariants Invariants.hs 
 
 To run, type at command line
@@ -32,7 +32,7 @@ purpose = "Given a gauss code for a knotted surface,\
 
 
 -- | This is the example in Sam's diagrams.pdf
-test1 = [[2,1,1,2,10],[ 1,2,9,1,2],[-2,1,3,2,8],[-1,2,7,1,4],[-1,2,5,2,6]]
+test1 = [[2,1,1,2,10],[1,2,9,1,2],[-2,1,3,2,8],[-1,2,7,1,4],[-1,2,5,2,6]]
 
 -- | TODO: find another example to play with.
 --let test2 = [[]]
@@ -47,9 +47,8 @@ getSubdiagrams [[first]] =
 getSubdiagrams [[first],rest] = [[first]]
 
 main :: IO ()
-main = do print "hi"
-  --print purpose ++ "We'll eventually take in commandline args"
-
+main = do
+  print (purpose ++ "\nWe'll eventually take in commandline args")
 
 --let orthogonalSet = gramScmidt input
 --let subdiagrams = getSubdiagrams orthogonalSet
