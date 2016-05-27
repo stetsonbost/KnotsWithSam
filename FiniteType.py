@@ -5,6 +5,9 @@
     Authors     :  Stetson Bost, Ben Garbuz, Sam Nelson
 
     ===========================================================================
+    To run this code on a test file containing a linear combination:
+        python FiniteType.py test.txt
+    ===========================================================================
 
     This program will take a linear combination of Gauss diagrams for oriented
     knotted surfaces as a 5-tuple (list). First, label the circles (numbers or
@@ -74,11 +77,13 @@ def gramSchmidt(innerProduct, n):
   return None
 
 def main():
-  """
-  """
-  if len(sys.argv) != 3:
+  # if len(sys.argv) != 3:
+  #   raise ValueError("Invalid number of arguments.",
+  #     "FiniteType.py requires 2 arguments.")
+
+  if len(sys.argv) != 2:
     raise ValueError("Invalid number of arguments.",
-      "FiniteType.py requires 2 arguments.")
+      "FiniteType.py requires 1 argument.")
 
   # Read input file with linear combination of diagrams
   #   This should be a set/list/dictionary of tuples (a,D) where
@@ -86,6 +91,8 @@ def main():
   linearComboString = open(sys.argv[1]).read()
   linearCombo = ast.literal_eval(linearComboString) 
   # linearCombo is list of tuples of form (int, list of 5-tuples of ints)
+
+  # TODO: Check that input file is valid
 
   # Expand each diagram (solid arrows/chords) as sum of its
   #   subdiagrams (dashed arrows/chords).
