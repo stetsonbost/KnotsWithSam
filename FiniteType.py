@@ -14,10 +14,9 @@
     characters). Then number the arrow/chord endpoints in order. The 5-tuples
     [x0,x1,x2,x3,x4] are specified as follows:
         x0 =
-               1 positive crossing (classical)
-              -1 negative crossing (classical)
-               2 vertical saddle
-              -2 horizontal saddle
+               1 positive crossing
+              -1 negative crossing
+               0 saddle
 
       For classical crossings,
         x1 = component number of the arrowhead
