@@ -14,3 +14,4 @@ Given an inner product of linear combinations of Gauss diagrams for knotted surf
 
 Initially `GaussSubiagrams.py` was used to enumerate the Gauss codes for all subdiagrams of a knotted surface, given its Gauss code.
 This file is no longer used because we have significantly changed the way we are representing Gauss codes, but I used a similar algorithm to find the subdiagrams in `FiniteType.py`.
+I am currently trying to integrate `Yoshikawa.pl` (Prolog) with `FiniteType.py` to facilitate the creation of the Yoshikawa submodule generators because logic programming is well-suited for this task.
