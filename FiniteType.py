@@ -2,7 +2,7 @@
 """
     Module      :  FiniteType.py
     Description :  Produces finite type invariants of knotted surfaces
-    Authors     :  Stetson Bost, Ben Garbuz, Sam Nelson
+    Authors     :  Stetson Bost, Ben Garbuz
 
     ===========================================================================
     To run this code on a test file containing a linear combination:
@@ -29,7 +29,7 @@
         x2 = lower of the saddle's numeric labels
         x3 = component number of the higher of the numeric labels
         x4 = higher of the saddle's numeric labels
-      Note: For saddles, we always choose x2 < x4 simply to avoid ambiguity.
+      Note: For saddles, we choose x2 < x4 simply to avoid ambiguity.
 """
 import sys  # used in main to read command line arguments
 import ast  # used in main to convert string to list
@@ -37,9 +37,9 @@ from copy import deepcopy # used in calculateSubdiagrams
 
 def calculateSubdiagrams(subdiagrams, diagram):
   """
-      Returns set of subdiagrams whose sum is diagram
+  Returns set of subdiagrams whose sum is diagram
   """
-  # Add diagram (as tuple) to set of subdiagrams
+  # Add diagram (as tuple) to set of subdiagrams 
   subdiagrams.add(tuple(diagram))
 
   # Go through the crossings of the diagram
@@ -60,10 +60,41 @@ def obtainLinearCombination(linearComboString):
   print "TODO"
   return None
 
-def innerProducts(linearComboSubdiagrams):
+def innerProduct(linearCombo1, linearCombo2):
+  """
+  Returns the inner product of 2 linear combinations of subdiagrams.
+  The arguments linearCombo1 and linearCombo2 must be linear combinatons 
+    of sets of subdiagrams
+  """
+  innerProd = 0
+  # TODO: I'm starting with simple sets on both sides, not sum of sets, 
+  #   with coefficient 1. We need to fix this later
+  # TODO: find way to represent dashed vs undashed arrows
+  #   For now, assume both are already sums (sets) of dashed subdiagrams
+
+  # TODO: copy and remove elements as we go through them
+  for subdiagram1 in linearCombo1:
+    for subdiagram2 in linearCombo2:
+      # for equivalent elements, increment innerProd
+      if equiv(subdiagram1, subdiagram2):
+        innerProd += 1
+
+
+
+  return innerProd
+
+def equiv(subdiagram1, subdiagram2):
+  """
+  Returns True if both dashed subdiagrams are equivalent
+    i.e. (0,A,1,A,3) is equivalent to (0,X,2,X,3)
+  Returns False otherwise
+  """
   # TODO
   print "TODO"
-  return None
+  if len(subdiagram1) != len(subdiagram2):
+    return False
+
+  return True
 
 def yoshikawa(innerProduct, n):
   # TODO
@@ -103,16 +134,18 @@ def main():
     subdiagrams = calculateSubdiagrams(set(), diagram[1])
     linearComboSubdiagrams.append((diagram[0], subdiagrams))
 
-  # # TODO: Compute inner product of 2 diagrams using their sums
-  # #   of subdiagrams.
-  # #   Currently, I don't know what this entails
-  # innerProd = innerProducts(linearComboSubdiagrams)
+  print linearComboSubdiagrams
 
-  # # TODO: Generate Yoshikawa submodule generators for n arrows
-  # # # sys.argv[2] is the number of arrows/chords
+  # TODO: Compute inner product of 2 diagrams using their sums
+  #   of subdiagrams.
+  # innerProd = innerProducts(linearCombo1, linearCombo2)
+
+  # TODO: Generate Yoshikawa submodule generators for n arrows
+  #   sys.argv[2] is the number of arrows/chords
+  # TODO: adjust "if len(sys.argv) != 2:" to take 3rd argument needed
   # generators = yoshikawa(innerProd, sys.argv[2])
 
-  # # TODO: Use Gram-Schmidt to get invariant from Yoshikawa generators
+  # TODO: Use Gram-Schmidt to get invariant from Yoshikawa generators
   # invariants = gramSchmidt(generators)
 
 if __name__ == '__main__':
