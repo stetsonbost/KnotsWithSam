@@ -72,15 +72,41 @@ def innerProduct(linearCombo1, linearCombo2):
   # TODO: find way to represent dashed vs undashed arrows
   #   For now, assume both are already sums (sets) of dashed subdiagrams
 
-  # TODO: copy and remove elements as we go through them
-  for subdiagram1 in linearCombo1:
-    for subdiagram2 in linearCombo2:
-      # for equivalent elements, increment innerProd
-      if equiv(subdiagram1, subdiagram2):
-        innerProd += 1
+  # copy linear combinations to make it easier to alter them as needed
+  linearComboCopy1 = deepcopy(linearCombo1)
+  linearComboCopy2 = deepcopy(linearCombo2)
+  # print "linearComboCopy1\t" + str(linearComboCopy1)
+  # print "linearComboCopy2\t" + str(linearComboCopy2)
 
+  # get list of subdiagrams, get coefficients
+  for coeffAndSubdiagrams1 in linearComboCopy1:
+    subdiagramSet1 = coeffAndSubdiagrams1[1]
+    coeff1 = coeffAndSubdiagrams1[0]
+    subdiagramsToRemove1 = []
 
+    for coeffAndSubdiagrams2 in linearComboCopy2:
+      subdiagramSet2 = coeffAndSubdiagrams2[1]
+      coeff2 = coeffAndSubdiagrams2[0]
+      subdiagramsToRemove2 = []
 
+      # print "subSet 1\t" + str(subdiagramSet1)
+      # print "subSet 2\t" + str(subdiagramSet2)
+
+      # look for equivalent pairs of dashed subdiagrams in both lists
+      for subdiagram1 in subdiagramSet1:
+        for subdiagram2 in subdiagramSet2:
+          print "sub 1\t" + str(subdiagram1)
+          print "sub 2\t" + str(subdiagram2)
+
+          # for equivalent pairs of dashed subdiagrams, increment innerProd by 
+          #   product of coefficients and remove the subdiagrams to avoid 
+          #   over-counting diagrams
+          if equiv(subdiagram1, subdiagram2):
+            innerProd += coeff1 * coeff2
+            subdiagramsToRemove1.append(subdiagram1)
+            subdiagramsToRemove2.append(subdiagram2)
+
+        
   return innerProd
 
 def equiv(subdiagram1, subdiagram2):
@@ -88,11 +114,23 @@ def equiv(subdiagram1, subdiagram2):
   Returns True if both dashed subdiagrams are equivalent
     i.e. (0,A,1,A,3) is equivalent to (0,X,2,X,3)
   Returns False otherwise
+
+  Arguments must be a tuple of crossings representing a single subdiagram
   """
-  # TODO
-  print "TODO"
+  # TODO: Make sure arguments are the right type
+  # TODO: Make this work for subdiagrams of length > 1
+  # subdiagrams are not equivalent if they have different numbers of crossings
   if len(subdiagram1) != len(subdiagram2):
     return False
+  # look for a match
+  for crossing1 in subdiagram1:
+    match = False
+    for crossing2 in subdiagram2:
+      # check for same crossing type
+      if crossing1[0] == crossing2[0]:
+        match = True
+      if match == False:
+        return False
 
   return True
 
@@ -116,7 +154,7 @@ def main():
       "FiniteType.py requires 1 argument.")
 
   # Read input file with linear combination of diagrams
-  #   This should be a set/list/dictionary of tuples (a,D) where
+  #   This should be a list of tuples (a,D) where
   #   D is the diagram and a is an integer coefficient
   linearComboString = open(sys.argv[1]).read()
   linearCombo = ast.literal_eval(linearComboString) 
@@ -133,12 +171,20 @@ def main():
   for diagram in linearCombo:
     subdiagrams = calculateSubdiagrams(set(), diagram[1])
     linearComboSubdiagrams.append((diagram[0], subdiagrams))
+  # linearComboSubdiagrams is a
+  #   List of tuples            (<-- linear combinations)
+  #     of integer and set      (<-- integer = coefficient, set = subdiagrams)
+  #       of tuples             (<-- tuple = dashed subdiagrams)
+  #         of tuples           (<-- tuple = crossing)
+  #           of the form explained above (5-tuples)
+  # print linearComboSubdiagrams
 
-  print linearComboSubdiagrams
-
+  # TODO: Pick sets of subdiagrams
   # TODO: Compute inner product of 2 diagrams using their sums
   #   of subdiagrams.
-  # innerProd = innerProducts(linearCombo1, linearCombo2)
+  # innerProd = innerProduct(linearCombo1, linearCombo2)
+  innerProdTest = innerProduct(linearComboSubdiagrams, linearComboSubdiagrams)
+  print innerProdTest
 
   # TODO: Generate Yoshikawa submodule generators for n arrows
   #   sys.argv[2] is the number of arrows/chords
