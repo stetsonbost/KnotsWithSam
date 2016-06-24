@@ -75,6 +75,7 @@ def innerProduct(linearCombo1, linearCombo2):
   # copy linear combinations to make it easier to alter them as needed
   linearComboCopy1 = deepcopy(linearCombo1)
   linearComboCopy2 = deepcopy(linearCombo2)
+  print len(linearComboCopy2[0][1])
   # print "linearComboCopy1\t" + str(linearComboCopy1)
   # print "linearComboCopy2\t" + str(linearComboCopy2)
 
@@ -95,8 +96,8 @@ def innerProduct(linearCombo1, linearCombo2):
       # look for equivalent pairs of dashed subdiagrams in both lists
       for subdiagram1 in subdiagramSet1:
         for subdiagram2 in subdiagramSet2:
-          print "sub 1\t" + str(subdiagram1)
-          print "sub 2\t" + str(subdiagram2)
+          # print "sub 1\t" + str(subdiagram1)
+          
 
           # for equivalent pairs of dashed subdiagrams, increment innerProd by 
           #   product of coefficients and remove the subdiagrams to avoid 
@@ -106,8 +107,29 @@ def innerProduct(linearCombo1, linearCombo2):
             subdiagramsToRemove1.append(subdiagram1)
             subdiagramsToRemove2.append(subdiagram2)
 
-        
+        # remove the used subdiagrams
+        # print "sub 2\t" + str(subdiagramSet2)
+        # print " 2 " + str(subdiagramsToRemove2)
+        # print " 1 " + str(subdiagramsToRemove1)
+        for removal2 in subdiagramsToRemove2:
+          # print "  remove " + str(removal2)
+          subdiagramSet2.remove(removal2)
+        subdiagramsToRemove2 = []
+      # for removal1 in subdiagramsToRemove1:
+      #   subdiagramSet1.remove(removal1) 
   return innerProd
+
+def getNext(crossing):
+  """
+  Given a crossing, returns the next crossing
+  """
+  return
+
+def getPrev(crossing):
+  """
+  Given a crossing, returns the previous crossing
+  """
+  return
 
 def equiv(subdiagram1, subdiagram2):
   """
@@ -154,8 +176,10 @@ def main():
       "FiniteType.py requires 1 argument.")
 
   # Read input file with linear combination of diagrams
-  #   This should be a list of tuples (a,D) where
-  #   D is the diagram and a is an integer coefficient
+  #   This should be a list of tuples (a,D,C) where
+  #   a is an integer coefficient and
+  #   D is the diagram and
+  #   C is the tuple of components with an ordered list of their crossings
   linearComboString = open(sys.argv[1]).read()
   linearCombo = ast.literal_eval(linearComboString) 
   # linearCombo is list of tuples of form (int, list of 5-tuples of ints)
@@ -183,7 +207,7 @@ def main():
   # TODO: Compute inner product of 2 diagrams using their sums
   #   of subdiagrams.
   # innerProd = innerProduct(linearCombo1, linearCombo2)
-  innerProdTest = innerProduct(linearComboSubdiagrams, linearComboSubdiagrams)
+  innerProdTest = innerProduct([linearComboSubdiagrams[0]], [linearComboSubdiagrams[1]])
   print innerProdTest
 
   # TODO: Generate Yoshikawa submodule generators for n arrows
