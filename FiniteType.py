@@ -2,35 +2,54 @@
 """
     Module      :  FiniteType.py
     Description :  Produces finite type invariants of knotted surfaces
-    Authors     :  Stetson Bost, Ben Garbuz
+    Authors     :  Stetson Bost
 
     ===========================================================================
     To run this code on a test file containing a linear combination:
         python FiniteType.py test.txt
     ===========================================================================
 
-    This program will take a linear combination of Gauss diagrams for oriented
-    knotted surfaces as a 5-tuple (list). First, label the circles (numbers or
-    characters). Then number the arrow/chord endpoints in order. The 5-tuples
-    [x0,x1,x2,x3,x4] are specified as follows:
+    This program will take a linear combination of Gauss diagrams.
+    We express this linear combination 
+          n1*G1 + n2*G2 + ...
+    where n1, n2, ... are integer coefficients and G1, G2, ... are Gauss 
+    diagrams, in the form
+          [(n1,G1,C1), (n2,G2,C2), ...]
+    where C1, C2, ... are the components of the Gauss diagram corresponding to
+    G1, G2,..., respectively. We represent a Gauss diagram G for oriented
+    knotted surfaces as a list of its crossings in the form of 5-tuples. First,
+    label the circles (usually numbers or characters). Then number the arrow/
+    chord endpoints in order. The 5-tuples (x0,x1,x2,x3,x4) are specified as
+    follows:
         x0 =
                1 positive crossing
               -1 negative crossing
                0 saddle
 
       For classical crossings,
-        x1 = component number of the arrowhead
+        x1 = component number of x2
         x2 = numeric label of the arrowtail
-        x3 = component number of the arrowtail
+        x3 = component number of x4
         x4 = numeric label of the arrowhead
 
       For saddles, (which don't have arrowheads)
-        x1 = component number of the lower of the numeric labels
+        x1 = component number of x2
         x2 = lower of the saddle's numeric labels
-        x3 = component number of the higher of the numeric labels
+        x3 = component number of x4
         x4 = higher of the saddle's numeric labels
       Note: For saddles, we choose x2 < x4 simply to avoid ambiguity.
+
+    So we have a Gauss diagram represented as
+          G = [(x0,x1,x2,x3,x4), (y0,y1,y2,y3,y4), ...].
+
+    Now that we have a labelling for the components of the diagram, we can
+    construct a tuple C representing the components of G. Suppose G has
+    components labelled 'A', 'B', ..., and the components have crossings a1,
+    a2, ... for 'A', then b1, b2, ... for 'B', and so on. Then we can represent
+    the components as
+          C = (('A', [a1,a2,...]), ('B', [b1,b2,...]), ...).
 """
+
 import sys  # used in main to read command line arguments
 import ast  # used in main to convert string to list
 from copy import deepcopy # used in calculateSubdiagrams
