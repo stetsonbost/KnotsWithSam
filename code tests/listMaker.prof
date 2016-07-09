@@ -1,0 +1,100 @@
+	Fri Jul  8 18:10 2016 Time and Allocation Profiling Report  (Final)
+
+	   listMaker +RTS -p -RTS
+
+	total time  =     1930.28 secs   (1930282 ticks @ 1000 us, 1 processor)
+	total alloc = 1,729,943,550,720 bytes  (excludes profiling overheads)
+
+COST CENTRE             MODULE  %time %alloc
+
+arrowKeeper'.mapee      Main     16.8   20.5
+diagramKeeper.transform Main     14.2   12.3
+getRekt1                Main      9.4   13.0
+getRekt2                Main      9.0   13.0
+noGaps                  Main      4.8    2.9
+getRekt2.(...)          Main      4.4    6.2
+getRekt1.(...)          Main      4.4    5.6
+arrowFilter             Main      4.3    1.4
+getRekt2.first          Main      3.8    5.6
+diagramKeeper           Main      3.5    1.5
+getRekt1.first          Main      3.4    5.1
+templateList            Main      2.8    3.9
+arrowFilter.\           Main      2.6    2.5
+arrowKeeper'            Main      2.6    2.8
+arrowKeeper.foldee      Main      2.2    0.3
+arrowKeeper             Main      2.1    1.7
+getRekt2.changed        Main      2.0    0.0
+getRekt1.changed        Main      1.7    0.0
+templateList.\          Main      1.0    0.5
+
+
+                                                                          individual     inherited
+COST CENTRE                     MODULE                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                            MAIN                     45           0    0.0    0.0   100.0  100.0
+ CAF                            Main                     89           0    0.0    0.0   100.0  100.0
+  main                          Main                     90           1    0.0    0.0   100.0  100.0
+   move1                        Main                     91           1    0.0    0.0   100.0  100.0
+    move1.\                     Main                    149       43272    0.0    0.0     0.0    0.0
+    almostThere                 Main                     93           1    0.1    0.0   100.0  100.0
+     arrowFilter'               Main                    127    36484139    0.7    0.1    17.1   16.1
+      arrowFilter'.\            Main                    143   109452414    0.4    0.2     2.4    1.3
+       noGaps                   Main                    144   109452414    2.1    1.2     2.1    1.2
+      arrowFilter'.stuff        Main                    128    36484139    0.0    0.0    13.9   14.7
+       arrowKeeper'             Main                    129    36484139    0.6    0.6    13.9   14.7
+        arrowKeeper'.mapee      Main                    130    36484139    3.6    4.2    13.3   14.0
+         arrowKeeper            Main                    131    36484139    0.4    0.3     9.6    9.9
+          arrowKeeper.foldee    Main                    136    36484139    0.4    0.1     5.1    5.1
+           getRekt1             Main                    139   109452416    1.8    2.3     3.9    4.2
+            getRekt1.second     Main                    148   109452414    0.1    0.0     0.1    0.0
+            getRekt1.changed    Main                    146   109452414    0.4    0.0     0.4    0.0
+            getRekt1.(...)      Main                    142   109452415    0.9    1.0     0.9    1.0
+            getRekt1.preFirst   Main                    141   109452415    0.1    0.0     0.1    0.0
+            getRekt1.first      Main                    140   109452415    0.6    0.9     0.6    0.9
+           templateList         Main                    137    36484139    0.5    0.7     0.8    0.8
+            templateList.\      Main                    138   109452416    0.3    0.1     0.3    0.1
+          getRekt2              Main                    132   109452417    1.9    2.4     4.2    4.5
+           getRekt2.second      Main                    147   109452414    0.1    0.0     0.1    0.0
+           getRekt2.changed     Main                    145   109452414    0.4    0.0     0.4    0.0
+           getRekt2.(...)       Main                    135   109452417    0.9    1.1     0.9    1.1
+           getRekt2.preFirst    Main                    134   109452417    0.2    0.0     0.2    0.0
+           getRekt2.first       Main                    133   109452417    0.7    1.0     0.7    1.0
+     almostThere.thing1         Main                     95           1    0.5    0.3    21.4   16.4
+      diagramFilter             Main                    102    99713220    0.2    0.1    20.6   15.7
+       diagramKeeper            Main                    104    99713220    3.5    1.5    17.7   13.8
+        diagramKeeper.\         Main                    106   299139660    0.0    0.0     0.0    0.0
+        diagramKeeper.transform Main                    105    99713220   14.2   12.3    14.2   12.3
+       noGaps                   Main                    103    99713220    2.7    1.7     2.7    1.7
+      listMakerHelper'''        Main                     96           1    0.0    0.0     0.2    0.5
+       listMakerHelper'''.a     Main                    100           1    0.0    0.0     0.0    0.0
+        tupleGenerator          Main                    101           1    0.0    0.0     0.0    0.0
+       listMakerHelper'''.b     Main                     98           1    0.0    0.0     0.0    0.0
+        listMakerHelper         Main                     99           1    0.0    0.0     0.0    0.0
+       listMakerHelper'         Main                     97           1    0.2    0.5     0.2    0.5
+     almostThere.thing2         Main                     94           1    0.4    0.1    61.4   67.5
+      arrowFilter               Main                    107    86586684    4.3    1.4    61.0   67.4
+       arrowFilter.\            Main                    124   196111235    2.6    2.5     2.6    2.5
+       arrowKeeper'             Main                    108   173173368    2.0    2.2    54.1   63.5
+        arrowKeeper'.mapee      Main                    109   173173368   13.2   16.3    52.1   61.2
+         arrowKeeper            Main                    110   173173368    1.7    1.4    38.9   44.9
+          arrowKeeper.foldee    Main                    115   173173368    1.8    0.2    20.9   23.2
+           getRekt1             Main                    118   519520104    7.6   10.7    16.1   19.4
+            getRekt1.second     Main                    125   409715376    0.3    0.0     0.3    0.0
+            getRekt1.changed    Main                    123   439708906    1.4    0.0     1.4    0.0
+            getRekt1.(...)      Main                    121   519520104    3.5    4.6     3.5    4.6
+            getRekt1.preFirst   Main                    120   519520104    0.6    0.0     0.6    0.0
+            getRekt1.first      Main                    119   519520104    2.8    4.2     2.8    4.2
+           templateList         Main                    116   173173368    2.3    3.2     3.0    3.5
+            templateList.\      Main                    117   491880120    0.7    0.4     0.7    0.4
+          getRekt2              Main                    111   519520104    7.1   10.7    16.2   20.3
+           getRekt2.second      Main                    126   315958344    0.2    0.0     0.2    0.0
+           getRekt2.changed     Main                    122   426061802    1.6    0.0     1.6    0.0
+           getRekt2.(...)       Main                    114   519520104    3.5    5.1     3.5    5.1
+           getRekt2.preFirst    Main                    113   519520104    0.7    0.0     0.7    0.0
+           getRekt2.first       Main                    112   519520104    3.1    4.6     3.1    4.6
+    betterNub                   Main                     92           1    0.0    0.0     0.0    0.0
+ CAF                            GHC.Conc.Signal          86           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.IO.Encoding          81           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.IO.Encoding.Iconv    79           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.IO.Handle.FD         72           0    0.0    0.0     0.0    0.0
+ CAF                            GHC.TopHandler           68           0    0.0    0.0     0.0    0.0
