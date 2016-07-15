@@ -1,0 +1,160 @@
+	Thu Jul 14 18:10 2016 Time and Allocation Profiling Report  (Final)
+
+	   move1 +RTS -p -RTS
+
+	total time  =   218016.27 secs   (218016273 ticks @ 1000 us, 1 processor)
+	total alloc = 206,487,651,619,040 bytes  (excludes profiling overheads)
+
+COST CENTRE             MODULE    %time %alloc
+
+arrowKeeper'.mapee      ListMaker  12.9   13.8
+betterNub               ListMaker  12.1    7.4
+listMaker               ListMaker  11.4    9.5
+getRekt2                ListMaker   8.3   11.0
+getRekt1                ListMaker   8.2   11.3
+getRekt1.(...)          ListMaker   4.5    5.9
+getRekt2.(...)          ListMaker   4.0    5.8
+arrowFilter             ListMaker   3.6    1.0
+getRekt2.first          ListMaker   3.5    5.1
+getRekt1.first          ListMaker   3.4    5.3
+noGaps                  ListMaker   3.4    1.9
+diagramKeeper           ListMaker   3.3    1.5
+diagramKeeper.transform ListMaker   3.2    3.0
+tupleGenerator          ListMaker   2.7    8.1
+templateList            ListMaker   2.4    3.2
+arrowKeeper'            ListMaker   2.2    2.2
+getRekt2.changed        ListMaker   1.8    0.0
+arrowKeeper             ListMaker   1.5    1.4
+getRekt1.changed        ListMaker   1.4    0.0
+arrowKeeper.foldee      ListMaker   1.2    1.4
+
+
+                                                                           individual     inherited
+COST CENTRE                      MODULE                  no.     entries  %time %alloc   %time %alloc
+
+MAIN                             MAIN                     46           0    0.0    0.0   100.0  100.0
+ CAF                             ListMaker                91           0    0.0    0.0     0.0    0.0
+ CAF                             Main                     90           0    0.0    0.0   100.0  100.0
+  main                           Main                     92           1    0.0    0.0   100.0  100.0
+   right                         Main                    150           4    0.0    0.0    50.6   50.0
+    right.\                      Main                    207      137287    0.0    0.0     0.0    0.0
+    move1                        ListMaker               151           4    0.0    0.0    50.6   50.0
+     move1.\                     ListMaker               206      137287    0.0    0.0     0.0    0.0
+     almostThere                 ListMaker               153           4    0.1    0.0    50.6   50.0
+      arrowFilter'               ListMaker               184  1459972279    0.2    0.1     5.5    6.0
+       arrowFilter'.\            ListMaker               202  1812599215    0.1    0.0     0.5    0.2
+        noGaps                   ListMaker               203  1812599215    0.4    0.1     0.4    0.1
+       arrowFilter'.stuff        ListMaker               185  1459972279    0.0    0.0     4.9    5.7
+        arrowKeeper'             ListMaker               186  1459972279    0.2    0.3     4.9    5.7
+         arrowKeeper'.mapee      ListMaker               187  1459972279    0.6    0.7     4.7    5.4
+          arrowKeeper            ListMaker               188  1459972279    0.1    0.1     4.1    4.7
+           arrowKeeper.foldee    ListMaker               193  1459972279    0.1    0.1     2.2    2.5
+            templateList         ListMaker               198  1459972279    0.2    0.3     0.3    0.3
+             templateList.\      ListMaker               199  5839714945    0.0    0.0     0.0    0.0
+            getRekt1             ListMaker               194  5839714945    0.8    1.0     1.8    2.1
+             getRekt1.changed    ListMaker               205  1398358393    0.1    0.0     0.1    0.0
+             getRekt1.second     ListMaker               201  5839714945    0.0    0.0     0.0    0.0
+             getRekt1.(...)      ListMaker               197  5839714945    0.5    0.6     0.5    0.6
+             getRekt1.preFirst   ListMaker               196  5839714945    0.1    0.0     0.1    0.0
+             getRekt1.first      ListMaker               195  5839714945    0.3    0.5     0.3    0.5
+           getRekt2              ListMaker               189  5839714945    0.8    1.0     1.8    2.1
+            getRekt2.changed     ListMaker               204  1398358393    0.1    0.0     0.1    0.0
+            getRekt2.second      ListMaker               200  5839714945    0.0    0.0     0.0    0.0
+            getRekt2.(...)       ListMaker               192  5839714945    0.4    0.6     0.4    0.6
+            getRekt2.preFirst    ListMaker               191  5839714945    0.1    0.0     0.1    0.0
+            getRekt2.first       ListMaker               190  5839714945    0.4    0.5     0.4    0.5
+      almostThere.thing1         ListMaker               155           4    0.3    0.1    15.7   14.2
+       diagramFilter             ListMaker               157  4837030895    0.1    0.1     8.3    5.3
+        diagramKeeper            ListMaker               159  4837030895    1.7    0.7     6.9    4.4
+         diagramKeeper.\         ListMaker               162 19347650315    0.0    0.0     0.0    0.0
+         diagramKeeper.transform ListMaker               160  4837030895    1.6    1.5     5.2    3.7
+          betterNub              ListMaker               161  4837030895    3.6    2.2     3.6    2.2
+        noGaps                   ListMaker               158  4837030895    1.3    0.8     1.3    0.8
+       listMaker                 ListMaker               156           4    5.7    4.7     7.1    8.8
+        tupleGenerator           ListMaker               209     9441231    1.3    4.1     1.3    4.1
+      almostThere.thing2         ListMaker               154           4    0.2    0.0    29.3   29.8
+       arrowFilter               ListMaker               163  3265614613    1.8    0.5    29.2   29.8
+        arrowFilter.\            ListMaker               180  8952173161    0.1    0.0     2.6    1.5
+         betterNub               ListMaker               181  8952173161    2.5    1.5     2.5    1.5
+        arrowKeeper'             ListMaker               164  6531229226    0.9    0.8    24.7   27.7
+         arrowKeeper'.mapee      ListMaker               165  6531229226    5.9    6.2    23.8   26.9
+          arrowKeeper            ListMaker               166  6531229226    0.6    0.6    17.9   20.7
+           arrowKeeper.foldee    ListMaker               171  6531229226    0.5    0.6     9.5   11.2
+            templateList         ListMaker               176  6531229226    1.0    1.3     1.4    1.4
+             templateList.\      ListMaker               177 23918039562    0.4    0.1     0.4    0.1
+            getRekt1             ListMaker               172 26124145658    3.3    4.6     7.6    9.2
+             getRekt1.second     ListMaker               183 21596802894    0.1    0.0     0.1    0.0
+             getRekt1.changed    ListMaker               179 20850682250    0.7    0.0     0.7    0.0
+             getRekt1.(...)      ListMaker               175 26124145658    1.8    2.4     1.8    2.4
+             getRekt1.preFirst   ListMaker               174 26124145658    0.3    0.0     0.3    0.0
+             getRekt1.first      ListMaker               173 26124145658    1.4    2.2     1.4    2.2
+           getRekt2              ListMaker               167 26124145658    3.4    4.5     7.8    8.9
+            getRekt2.second      ListMaker               182 18371508986    0.1    0.0     0.1    0.0
+            getRekt2.changed     ListMaker               178 20850682250    0.9    0.0     0.9    0.0
+            getRekt2.(...)       ListMaker               170 26124145658    1.6    2.3     1.6    2.3
+            getRekt2.preFirst    ListMaker               169 26124145658    0.3    0.0     0.3    0.0
+            getRekt2.first       ListMaker               168 26124145658    1.4    2.0     1.4    2.0
+     betterNub                   ListMaker               152           4    0.0    0.0     0.0    0.0
+   left                          Main                     93           4    0.0    0.0    49.4   50.0
+    move1                        ListMaker                94           4    0.0    0.0    49.4   50.0
+     move1.\                     ListMaker               149      137287    0.0    0.0     0.0    0.0
+     almostThere                 ListMaker                96           4    0.1    0.0    49.4   50.0
+      arrowFilter'               ListMaker               127  1459972279    0.2    0.1     5.4    6.0
+       arrowFilter'.\            ListMaker               145  1812599215    0.1    0.0     0.5    0.2
+        noGaps                   ListMaker               146  1812599215    0.4    0.1     0.4    0.1
+       arrowFilter'.stuff        ListMaker               128  1459972279    0.0    0.0     4.8    5.7
+        arrowKeeper'             ListMaker               129  1459972279    0.2    0.3     4.8    5.7
+         arrowKeeper'.mapee      ListMaker               130  1459972279    0.6    0.7     4.6    5.4
+          arrowKeeper            ListMaker               131  1459972279    0.1    0.1     4.0    4.7
+           arrowKeeper.foldee    ListMaker               136  1459972279    0.1    0.1     2.1    2.5
+            templateList         ListMaker               141  1459972279    0.2    0.3     0.3    0.3
+             templateList.\      ListMaker               142  5839714945    0.1    0.0     0.1    0.0
+            getRekt1             ListMaker               137  5839714945    0.7    1.0     1.7    2.1
+             getRekt1.changed    ListMaker               148  1398358393    0.1    0.0     0.1    0.0
+             getRekt1.second     ListMaker               144  5839714945    0.0    0.0     0.0    0.0
+             getRekt1.(...)      ListMaker               140  5839714945    0.5    0.6     0.5    0.6
+             getRekt1.preFirst   ListMaker               139  5839714945    0.1    0.0     0.1    0.0
+             getRekt1.first      ListMaker               138  5839714945    0.3    0.5     0.3    0.5
+           getRekt2              ListMaker               132  5839714945    0.8    1.0     1.7    2.1
+            getRekt2.changed     ListMaker               147  1398358393    0.1    0.0     0.1    0.0
+            getRekt2.second      ListMaker               143  5839714945    0.0    0.0     0.0    0.0
+            getRekt2.(...)       ListMaker               135  5839714945    0.4    0.6     0.4    0.6
+            getRekt2.preFirst    ListMaker               134  5839714945    0.1    0.0     0.1    0.0
+            getRekt2.first       ListMaker               133  5839714945    0.4    0.5     0.4    0.5
+      almostThere.thing1         ListMaker                98           4    0.2    0.1    15.4   14.2
+       diagramFilter             ListMaker               100  4837030895    0.1    0.1     8.2    5.3
+        diagramKeeper            ListMaker               102  4837030895    1.6    0.7     6.8    4.4
+         diagramKeeper.\         ListMaker               105 19347650315    0.0    0.0     0.0    0.0
+         diagramKeeper.transform ListMaker               103  4837030895    1.6    1.5     5.1    3.7
+          betterNub              ListMaker               104  4837030895    3.5    2.2     3.5    2.2
+        noGaps                   ListMaker               101  4837030895    1.3    0.8     1.3    0.8
+       listMaker                 ListMaker                99           4    5.7    4.7     7.0    8.8
+        tupleGenerator           ListMaker               208     9441231    1.3    4.1     1.3    4.1
+      almostThere.thing2         ListMaker                97           4    0.2    0.0    28.6   29.8
+       arrowFilter               ListMaker               106  3265614613    1.8    0.5    28.4   29.8
+        arrowFilter.\            ListMaker               123  8952173161    0.1    0.0     2.5    1.5
+         betterNub               ListMaker               124  8952173161    2.5    1.5     2.5    1.5
+        arrowKeeper'             ListMaker               107  6531229226    0.9    0.8    24.1   27.7
+         arrowKeeper'.mapee      ListMaker               108  6531229226    5.7    6.2    23.2   26.9
+          arrowKeeper            ListMaker               109  6531229226    0.6    0.6    17.4   20.7
+           arrowKeeper.foldee    ListMaker               114  6531229226    0.5    0.6     9.3   11.2
+            templateList         ListMaker               119  6531229226    1.0    1.3     1.4    1.4
+             templateList.\      ListMaker               120 23918039562    0.4    0.1     0.4    0.1
+            getRekt1             ListMaker               115 26124145658    3.3    4.6     7.5    9.2
+             getRekt1.second     ListMaker               126 21596802894    0.1    0.0     0.1    0.0
+             getRekt1.changed    ListMaker               122 20850682250    0.6    0.0     0.6    0.0
+             getRekt1.(...)      ListMaker               118 26124145658    1.8    2.4     1.8    2.4
+             getRekt1.preFirst   ListMaker               117 26124145658    0.3    0.0     0.3    0.0
+             getRekt1.first      ListMaker               116 26124145658    1.3    2.2     1.3    2.2
+           getRekt2              ListMaker               110 26124145658    3.3    4.5     7.5    8.9
+            getRekt2.second      ListMaker               125 18371508986    0.1    0.0     0.1    0.0
+            getRekt2.changed     ListMaker               121 20850682250    0.8    0.0     0.8    0.0
+            getRekt2.(...)       ListMaker               113 26124145658    1.6    2.3     1.6    2.3
+            getRekt2.preFirst    ListMaker               112 26124145658    0.3    0.0     0.3    0.0
+            getRekt2.first       ListMaker               111 26124145658    1.4    2.0     1.4    2.0
+     betterNub                   ListMaker                95           4    0.0    0.0     0.0    0.0
+ CAF                             GHC.Conc.Signal          87           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Encoding          82           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Encoding.Iconv    80           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Handle.FD         73           0    0.0    0.0     0.0    0.0
+ CAF                             GHC.IO.Handle.Text       63           0    0.0    0.0     0.0    0.0
